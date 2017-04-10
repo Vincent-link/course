@@ -1,24 +1,19 @@
 # README
+学生表：students
+课程表：cous
+老师表：teachers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+学生-课程表：lessons
+学生-老师表：teacher_relationships
 
-Things you may want to cover:
 
-* Ruby version
+1. `GET /students/:id`，以Json返回该名学生的所有课程与对应代课老师的信息；
+http://localhost:3000/api/v1/students/1
 
-* System dependencies
+2. `GET /teachers`，以Json返回所有的老师及其所带课程的信息；
+http://localhost:3000/api/v1/teachers
 
-* Configuration
+3. `DELETE /teachers/:id`，删除该老师与所带课程的全部信息。
+http://localhost:3000/api/v1/teachers/1
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+注意：访问之前，要执行rake db:seed，导入测试数据
