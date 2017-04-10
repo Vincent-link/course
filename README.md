@@ -1,10 +1,10 @@
 # README
-学生表：students
-课程表：cous
-老师表：teachers
+* 学生表：students
+* 课程表：cous
+* 老师表：teachers
 
-学生-课程表：lessons
-学生-老师表：teacher_relationships
+* 学生-课程表：lessons
+* 学生-老师表：teacher_relationships
 
 
 1. `GET /students/:id`，以Json返回该名学生的所有课程与对应代课老师的信息；
