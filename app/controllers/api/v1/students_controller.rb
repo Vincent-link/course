@@ -1,6 +1,7 @@
 class Api::V1::StudentsController < ApiController
   def index
     @students = Student.all
+
     render :json => {
       :data => @students.map { |student|
         { :name => student.name,
@@ -12,13 +13,14 @@ class Api::V1::StudentsController < ApiController
 
   def show
     @student = Student.find(params[:id])
-    @lessons = Lesson.where(:student_id => params[:id])
+    @cous = @student.participated_cous
 
     render :json => {
       :name => @student.name,
-      :cous => @lessons.map { |lesson|
-          { :name => @lesson.name,
-            :cou_url => api_v1_cou_url(lesson.cou_id)
+      :data => @cous.map { |cou|
+          { :name => cou.name,
+            :name = >teacher.name,
+            :cou_url => api_v1_cou_url(cou.id)
           }
         }
     }
