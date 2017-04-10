@@ -1,4 +1,5 @@
 class Api::V1::StudentsController < ApiController
+  #所有的学生
   def index
     @students = Student.all
 
@@ -10,19 +11,11 @@ class Api::V1::StudentsController < ApiController
       }
     }
   end
-
+  
+  #学生的所有课程及老师
   def show
     @student = Student.find(params[:id])
-    @cous = @student.participated_cous
 
-    render :json => {
-      :name => @student.name,
-      :data => @cous.map { |cou|
-          { :name => cou.name,
-            :name = >teacher.name,
-            :cou_url => api_v1_cou_url(cou.id)
-          }
-        }
-    }
+    render json: @student.to_json(:include => {:cous => {:include => :teacher }})
   end
 end

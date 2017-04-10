@@ -1,5 +1,6 @@
 class Cou < ApplicationRecord
-
   has_many :lessons
-  has_many :members, through: :lessons, source: :student
+  has_many :students, through: :lessons, source: :student
+
+  belongs_to :teacher
 end

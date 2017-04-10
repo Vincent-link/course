@@ -6,16 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Student.create!( :name => "张三")
-Student.create!( :name => "李四")
-Student.create!( :name => "王二")
+#创建5个学生，3门课程，5个老师， 随机进行分配
 
-Teacher.create!( :name => "王老师")
-Teacher.create!( :name => "李老师")
-Teacher.create!( :name => "项老师")
+5.times { |i| Student.create( :name => "#{i} student") }
+5.times { |i| Teacher.create( :name => "#{i} teacher" ) }
+3.times { |i| Cou.create( :name => "#{i} course", :teacher_id => Teacher.ids.sample) }
 
-Cou.create!( :name => "音乐")
-Cou.create!( :name => "美术")
-Cou.create!( :name => "电影")
+Student.all.each do |student|
+      10.times {student.teachers << Teacher.all.sample }
+    student.save
+ end
 
-Lesson.create!( :student_id => 1, :cou_id =>1)
+Student.all.each do |student|
+      10.times {student.cous << Cou.all.sample }
+     student.save
+ end
